@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrección de Texto</title>
+</head>
+<body>
+    <h1>Corrección de Texto</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <label for="file">Sube tu archivo de texto (.txt):</label>
+        <input type="file" name="file" id="file" accept=".txt" required>
+        <br><br>
+        <input type="checkbox" name="corregir_ortografia" id="corregir_ortografia">
+        <label for="corregir_ortografia">Aplicar corrección ortográfica</label>
+        <br><br>
+        <button type="submit">Procesar</button>
+    </form>
+
+    {% if texto_original %}
+        <h2>Texto Original:</h2>
+        <pre>{{ texto_original }}</pre>
+    {% endif %}
+
+    {% if corregido and texto_corregido %}
+        <h2>Texto Corregido:</h2>
+        <pre>{{ texto_corregido }}</pre>
+    {% endif %}
+
+    {% if porcentaje_formal is not none and porcentaje_informal is not none and porcentaje_groserias is not none %}
+        <h2>Estadísticas del Lenguaje:</h2>
+        <ul>
+            <li>Porcentaje Formal: {{ porcentaje_formal }}%</li>
+            <li>Porcentaje Informal: {{ porcentaje_informal }}%</li>
+            <li>Porcentaje de Groserías: {{ porcentaje_groserias }}%</li>
+        </ul>
+    {% endif %}
+</body>
+</html>
